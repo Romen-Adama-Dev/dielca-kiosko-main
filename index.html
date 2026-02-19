@@ -238,6 +238,14 @@
         </div>
     </aside>
 
+    <!-- Botón flotante de búsqueda (encima del carrito) -->
+    <button class="search-fab" aria-label="Buscar producto" style="display:none" id="search-fab-btn">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none">
+            <circle cx="11" cy="11" r="7" stroke="white" stroke-width="2.5"/>
+            <path d="M20 20l-4.35-4.35" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+    </button>
+
     <!-- Botón flotante del carrito (visible en todas las pantallas de pedido) -->
     <button class="cart-fab" aria-label="Ver carrito" style="display:none" id="cart-fab-btn">
         <svg viewBox="0 0 24 24" width="36" height="36" fill="none">
@@ -298,6 +306,29 @@
         </div>
     </div>
 
+    <!-- ================================================
+     MODAL DE BÚSQUEDA
+     ================================================ -->
+    <div id="search-modal">
+        <div class="search-modal-box">
+            <div class="search-modal-header">
+                <div class="search-input-wrapper">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                        <circle cx="11" cy="11" r="7" stroke="var(--azul)" stroke-width="2.5"/>
+                        <path d="M20 20l-4.35-4.35" stroke="var(--azul)" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                    <input id="search-input" type="search" placeholder="Buscar por nombre, referencia o categoría…"
+                        autocomplete="off" autocorrect="off" spellcheck="false"/>
+                    <button id="search-clear" aria-label="Borrar búsqueda">✕</button>
+                </div>
+                <button id="search-close" class="search-close-btn">Cerrar</button>
+            </div>
+            <div id="search-results" class="search-results">
+                <!-- Renderizado por JS -->
+            </div>
+        </div>
+    </div>
+
     <!-- Feedback visual al añadir producto -->
     <div id="add-feedback">
         <svg viewBox="0 0 24 24" width="28" height="28" fill="none">
@@ -307,29 +338,18 @@
         ¡Añadido al pedido!
     </div>
 
-    <script src="js/data.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/app.js"></script>
+    <!-- ES Module entry point — all dependencies injected in src/main.js -->
+    <script type="module" src="src/main.js"></script>
 
     <script>
-        // Kiosk mode: prevent context menu, keyboard shortcuts
+        // Kiosk hardening: disable context menu and dangerous keyboard shortcuts
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', e => {
-            if (['F5', 'F11', 'F12'].includes(e.key) || (e.ctrlKey && ['r', 'R', 'u', 'U', 'p', 'P', 's', 'S'].includes(e.key))) {
+            if (['F5', 'F11', 'F12'].includes(e.key) ||
+                (e.ctrlKey && ['r','R','u','U','p','P','s','S'].includes(e.key))) {
                 e.preventDefault();
             }
         });
-
-        // Show/hide cart FAB when switching screens
-        const observer = new MutationObserver(() => {
-            const fab = document.getElementById('cart-fab-btn');
-            const active = document.querySelector('.screen.active');
-            if (!active) return;
-            const hideScreen = ['screen-splash', 'screen-confirmacion', 'screen-resumen'].includes(active.id);
-            const hideCart = typeof cartOpen !== 'undefined' && cartOpen;
-            fab.style.display = (hideScreen || hideCart) ? 'none' : 'flex';
-        });
-        observer.observe(document.getElementById('app'), { subtree: true, attributes: true, attributeFilter: ['class'] });
     </script>
 
 </body>
