@@ -5,7 +5,7 @@
 // and whenever the cart panel is open.
 // ==============================================
 
-const HIDDEN_SCREENS = new Set(['splash', 'confirmacion']);
+const HIDDEN_SCREENS = new Set(['splash', 'confirmacion', 'resumen']);
 
 export class FabButton {
   /**

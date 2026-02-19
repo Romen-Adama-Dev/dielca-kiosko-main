@@ -6,7 +6,7 @@
 
 import { PRODUCTO_ICONS } from '../../data/icons.js';
 
-const HIDDEN_SCREENS = new Set(['splash', 'confirmacion']);
+const HIDDEN_SCREENS = new Set(['splash', 'confirmacion', 'resumen']);
 
 export class SearchModal {
   /**
