@@ -95,15 +95,14 @@
 
             <!-- Tabla de cabecera -->
             <div
-                style="padding: 0 40px; display: grid; grid-template-columns: 1fr 200px 150px 140px; gap: 16px; padding-top: 16px; padding-bottom: 8px;">
+                style="padding: 0 16px 0 16px; display: grid; grid-template-columns: 1fr 180px 130px 36px; gap: 14px; padding-top: 16px; padding-bottom: 8px;">
                 <span
                     style="font-size:13px; font-weight:700; color:#8a93a8; text-transform:uppercase; letter-spacing:1px;">Producto</span>
-                <span
-                    style="font-size:13px; font-weight:700; color:#8a93a8; text-transform:uppercase; letter-spacing:1px;">Referencia</span>
                 <span
                     style="font-size:13px; font-weight:700; color:#8a93a8; text-transform:uppercase; letter-spacing:1px; text-align:center;">Cantidad</span>
                 <span
                     style="font-size:13px; font-weight:700; color:#8a93a8; text-transform:uppercase; letter-spacing:1px; text-align:right;">Precio</span>
+                <span></span>
             </div>
 
             <div class="resumen-body" id="resumen-list">
@@ -249,6 +248,56 @@
         <span class="cart-badge" style="display:none">0</span>
     </button>
 
+    <!-- ================================================
+     MODAL DE DETALLE DE PRODUCTO
+     ================================================ -->
+    <div id="detail-modal">
+        <div class="detail-modal-box">
+            <div class="detail-modal-header">
+                <div class="detail-modal-icon" id="detail-icon"></div>
+                <div class="detail-modal-meta">
+                    <div class="detail-modal-cat" id="detail-cat"></div>
+                    <div class="detail-modal-nombre" id="detail-nombre"></div>
+                    <div class="detail-modal-ref" id="detail-ref"></div>
+                </div>
+                <button id="detail-close">✕</button>
+            </div>
+
+            <div class="detail-modal-body">
+                <!-- Specs -->
+                <div class="detail-section">
+                    <div class="detail-section-title">Especificaciones técnicas</div>
+                    <div id="detail-specs" class="detail-specs-grid"></div>
+                </div>
+
+                <!-- Compatibles / necesarios -->
+                <div class="detail-section" id="detail-compatible-section" style="display:none">
+                    <div class="detail-section-title">Productos necesarios / compatibles</div>
+                    <div id="detail-compatibles" class="detail-compat-list"></div>
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="detail-disclaimer" id="detail-disclaimer" style="display:none">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                        <path d="M12 9v4M12 17h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <span id="detail-disclaimer-text"></span>
+                </div>
+            </div>
+
+            <div class="detail-modal-footer">
+                <button id="detail-add-btn" class="detail-add-btn">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                        <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-10 2a2 2 0 100 4 2 2 0 000-4z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Añadir al pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Feedback visual al añadir producto -->
     <div id="add-feedback">
         <svg viewBox="0 0 24 24" width="28" height="28" fill="none">
@@ -276,8 +325,9 @@
             const fab = document.getElementById('cart-fab-btn');
             const active = document.querySelector('.screen.active');
             if (!active) return;
-            const hide = ['screen-splash', 'screen-confirmacion'].includes(active.id);
-            fab.style.display = hide ? 'none' : 'flex';
+            const hideScreen = ['screen-splash', 'screen-confirmacion', 'screen-resumen'].includes(active.id);
+            const hideCart = typeof cartOpen !== 'undefined' && cartOpen;
+            fab.style.display = (hideScreen || hideCart) ? 'none' : 'flex';
         });
         observer.observe(document.getElementById('app'), { subtree: true, attributes: true, attributeFilter: ['class'] });
     </script>
