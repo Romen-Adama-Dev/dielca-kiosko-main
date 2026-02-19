@@ -1,10 +1,14 @@
 // ==============================================
 // UI Component: SearchModal
 // Global product search across all categories.
-// Builds a flat searchable index on first open.
+// Landing view shows category groups sorted by
+// popularity (src/data/categoriasPopularidad.js).
+// Swap that file's source for a live API call
+// when the backend is ready.
 // ==============================================
 
 import { PRODUCTO_ICONS } from '../../data/icons.js';
+import { CATEGORIAS_POPULARIDAD } from '../../data/categoriasPopularidad.js';
 
 const HIDDEN_SCREENS = new Set(['splash', 'confirmacion', 'resumen']);
 
@@ -12,17 +16,21 @@ export class SearchModal {
   /**
    * @param {import('../../application/ProductoService.js').ProductoService} productoService
    * @param {import('../Router.js').Router} router
-   * @param {Function} onAddProduct  - called with (producto) → opens QtyModal
-   * @param {Function} onShowDetail  - called with (producto, categoria) → opens DetailModal
+   * @param {Function} onAddProduct        - called with (producto)
+   * @param {Function} onShowDetail        - called with (producto, categoria)
+   * @param {Function} onSelectCategoria   - called with (categoriaId) → navigate to productos
    */
-  constructor(productoService, router, onAddProduct, onShowDetail) {
-    this._service   = productoService;
-    this._router    = router;
-    this._onAdd     = onAddProduct;
-    this._onDetail  = onShowDetail;
+  constructor(productoService, router, onAddProduct, onShowDetail, onSelectCategoria) {
+    this._service    = productoService;
+    this._router     = router;
+    this._onAdd      = onAddProduct;
+    this._onDetail   = onShowDetail;
+    this._onSelectCat = onSelectCategoria;
 
     /** @type {Array<{ producto: Object, categoria: Object }>} */
     this._index   = null;
+    /** @type {Array<Object>} sorted categories */
+    this._cats    = null;
     this._loading = false;
 
     this._fab   = document.getElementById('search-fab-btn');
@@ -95,8 +103,14 @@ export class SearchModal {
     this._loading = true;
 
     const cats = await this._service.getCategorias();
-    const flat  = [];
 
+    // Sort categories by popularity order
+    const rank = Object.fromEntries(CATEGORIAS_POPULARIDAD.map((id, i) => [id, i]));
+    this._cats = [...cats].sort((a, b) =>
+      (rank[a.id] ?? 99) - (rank[b.id] ?? 99)
+    );
+
+    const flat = [];
     await Promise.all(cats.map(async (cat) => {
       const prods = await this._service.getProductosByCategoria(cat.id);
       prods.forEach(p => flat.push({ producto: p, categoria: cat }));
@@ -111,42 +125,118 @@ export class SearchModal {
     if (!q) { this._showPlaceholder(); return; }
     if (!this._index) return;
 
+    // Matching categories (chips at top)
+    const matchingCats = (this._cats ?? []).filter(c =>
+      c.nombre.toLowerCase().includes(q) ||
+      c.descripcion.toLowerCase().includes(q)
+    );
+
+    // Matching products
     const hits = this._index.filter(({ producto: p, categoria: c }) =>
       p.nombre.toLowerCase().includes(q) ||
       p.referencia.toLowerCase().includes(q) ||
       c.nombre.toLowerCase().includes(q)
     );
 
-    this._renderResults(hits);
+    this._renderResults(hits, matchingCats);
   }
 
   _showPlaceholder() {
     if (!this._results) return;
-    this._results.innerHTML = `
-      <div class="search-placeholder">
-        <svg viewBox="0 0 48 48" width="56" height="56" fill="none">
-          <circle cx="22" cy="22" r="14" stroke="var(--azul-light)" stroke-width="3"/>
-          <path d="M32 32l8 8" stroke="var(--azul-light)" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-        <p>Escribe para buscar productos,<br>referencias o categorías</p>
-      </div>`;
+    this._results.innerHTML = '';
+
+    if (!this._cats || this._cats.length === 0) {
+      this._results.innerHTML = `
+        <div class="search-placeholder">
+          <svg viewBox="0 0 48 48" width="56" height="56" fill="none">
+            <circle cx="22" cy="22" r="14" stroke="var(--azul-light)" stroke-width="3"/>
+            <path d="M32 32l8 8" stroke="var(--azul-light)" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <p>Escribe para buscar productos,<br>referencias o categorías</p>
+        </div>`;
+      return;
+    }
+
+    // Section title
+    const title = document.createElement('div');
+    title.className = 'search-section-title';
+    title.textContent = 'Explorar por categoría';
+    this._results.appendChild(title);
+
+    // Popularity badge labels
+    const badges = ['⭐ Más vendido', '🔥 Popular', '🔥 Popular'];
+
+    // Category grid
+    const grid = document.createElement('div');
+    grid.className = 'search-cats-grid';
+
+    this._cats.forEach((cat, idx) => {
+      const card = document.createElement('button');
+      card.className = 'search-cat-card';
+      card.style.setProperty('--cat-color', cat.color);
+      card.innerHTML = `
+        ${idx < badges.length ? `<span class="search-cat-badge">${badges[idx]}</span>` : ''}
+        <div class="search-cat-icon">${cat.icono}</div>
+        <div class="search-cat-name">${cat.nombre}</div>
+        <div class="search-cat-desc">${cat.descripcion}</div>
+      `;
+      card.addEventListener('click', () => {
+        this.close();
+        this._onSelectCat?.(cat.id);
+      });
+      grid.appendChild(card);
+    });
+
+    this._results.appendChild(grid);
   }
 
-  _renderResults(hits) {
+  _renderResults(hits, matchingCats = []) {
     if (!this._results) return;
     this._results.innerHTML = '';
 
+    // --- Category chips (shown when query matches a category) ---
+    if (matchingCats.length > 0) {
+      const chipsSection = document.createElement('div');
+      chipsSection.className = 'search-section-title';
+      chipsSection.textContent = 'Categorías relacionadas';
+      this._results.appendChild(chipsSection);
+
+      const chips = document.createElement('div');
+      chips.className = 'search-cat-chips';
+      matchingCats.forEach(cat => {
+        const chip = document.createElement('button');
+        chip.className = 'search-cat-chip';
+        chip.style.setProperty('--cat-color', cat.color);
+        chip.innerHTML = `<span class="chip-icon">${cat.icono}</span>${cat.nombre}`;
+        chip.addEventListener('click', () => {
+          this.close();
+          this._onSelectCat?.(cat.id);
+        });
+        chips.appendChild(chip);
+      });
+      this._results.appendChild(chips);
+    }
+
     if (hits.length === 0 && this._input?.value.trim()) {
-      this._results.innerHTML = `
+      const empty = document.createElement('div');
+      empty.innerHTML = `
         <div class="search-placeholder">
           <svg viewBox="0 0 48 48" width="48" height="48" fill="none">
             <circle cx="22" cy="22" r="14" stroke="#ccc" stroke-width="3"/>
             <path d="M32 32l8 8" stroke="#ccc" stroke-width="3" stroke-linecap="round"/>
             <path d="M16 28l12-12M28 28L16 16" stroke="#ccc" stroke-width="2.5" stroke-linecap="round"/>
           </svg>
-          <p>Sin resultados para "<strong>${this._input.value.trim()}</strong>"</p>
+          <p>Sin productos para "<strong>${this._input.value.trim()}</strong>"</p>
         </div>`;
+      this._results.appendChild(empty);
       return;
+    }
+
+    if (hits.length > 0) {
+      const prodTitle = document.createElement('div');
+      prodTitle.className = 'search-section-title';
+      prodTitle.textContent = `Productos (${hits.length})`;
+      this._results.appendChild(prodTitle);
     }
 
     hits.forEach(({ producto: p, categoria: c }) => {

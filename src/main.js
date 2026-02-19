@@ -72,6 +72,11 @@ const searchModal = new SearchModal(
   router,
   (producto) => qtyModal.open(producto),
   (producto, cat) => detailModal.open(producto, cat),
+  (catId) => {
+    currentCatId = catId;
+    router.go('productos');
+    productosScreen.render(catId);
+  },
 );
 
 // --- Cart Panel ---

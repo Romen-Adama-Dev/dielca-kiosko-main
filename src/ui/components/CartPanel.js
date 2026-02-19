@@ -55,8 +55,10 @@ export class CartPanel {
 
   _handleCheckout() {
     if (this._cart.isEmpty()) return;
-    this.close();
+    // Navigate first so the router fires onChange('resumen') and FABs hide
+    // before close() removes the cart overlay (which would briefly re-show them).
     this._onCheckout?.();
+    this.close();
   }
 
   _updateCheckoutBtn() {

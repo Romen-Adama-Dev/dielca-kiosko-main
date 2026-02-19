@@ -320,6 +320,87 @@ html, body {
   font-size: 16px; line-height: 1.6;
 }
 
+/* ---- Section title inside search ---- */
+.search-section-title {
+  font-size: 12px; font-weight: 800;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--gris); padding: 10px 4px 8px;
+}
+
+/* ---- Category grid (landing) ---- */
+.search-cats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  padding-bottom: 8px;
+}
+
+.search-cat-card {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px;
+  background: white;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  padding: 16px 12px 14px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.search-cat-card:active {
+  border-color: var(--cat-color, var(--azul));
+  box-shadow: 0 6px 20px rgba(0,0,0,.12);
+  transform: scale(.97);
+}
+
+.search-cat-badge {
+  position: absolute; top: -1px; right: -1px;
+  background: var(--cat-color, var(--azul));
+  color: white;
+  font-size: 10px; font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 0 var(--radius-sm) 0 var(--radius-sm);
+  letter-spacing: .4px;
+}
+
+.search-cat-icon { width: 52px; height: 52px; }
+.search-cat-icon svg { width: 52px; height: 52px; }
+
+.search-cat-name {
+  font-size: 13px; font-weight: 800;
+  color: var(--texto); line-height: 1.25;
+}
+.search-cat-desc {
+  font-size: 11px; color: var(--gris);
+  line-height: 1.4;
+}
+
+/* ---- Category chips (search results) ---- */
+.search-cat-chips {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  padding-bottom: 10px;
+}
+
+.search-cat-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: white;
+  border: 2px solid var(--cat-color, var(--azul));
+  border-radius: 40px;
+  padding: 6px 16px 6px 8px;
+  font-size: 13px; font-weight: 700;
+  color: var(--cat-color, var(--azul));
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.search-cat-chip:active {
+  background: var(--cat-color, var(--azul));
+  color: white;
+}
+
+.chip-icon { width: 28px; height: 28px; flex-shrink: 0; }
+.chip-icon svg { width: 28px; height: 28px; }
+
 .search-result-item {
   display: grid;
   grid-template-columns: 64px 1fr auto auto;
