@@ -284,7 +284,6 @@ html, body {
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 8px 24px rgba(11,97,208,0.3);
   transition: all 0.25s ease;
-  position: relative;
 }
 .search-fab:hover {
   transform: translateY(-4px);
@@ -604,7 +603,6 @@ html, body {
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 8px 24px rgba(214,69,69,0.3);
   transition: all 0.25s ease;
-  position: relative;
 }
 .cart-fab:hover {
   transform: translateY(-4px);
