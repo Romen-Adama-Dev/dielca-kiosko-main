@@ -1,0 +1,46 @@
+/* =============================================
+   GRID SYSTEMS
+   ============================================= */
+
+/* Category Grid */
+.categoria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Product Grid */
+.producto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+/* Resume Grid */
+.resumen-grid {
+  display: grid;
+  gap: 32px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Search Results Grid */
+.search-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .categoria-grid,
+  .producto-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+}

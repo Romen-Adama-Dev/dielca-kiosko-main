@@ -1,0 +1,65 @@
+/* =============================================
+   CATEGORIAS SCREEN
+   ============================================= */
+
+#screen-categorias {
+  background: var(--gris-claro);
+}
+
+/* Header customization for categorias */
+#screen-categorias .header {
+  background: linear-gradient(135deg, var(--azul-dark) 0%, var(--azul) 100%);
+  color: white;
+  box-shadow: 0 4px 16px rgba(11,97,208,0.25);
+}
+
+#screen-categorias .header-title {
+  color: white;
+}
+
+/* Content area */
+#screen-categorias .content {
+  background: var(--gris-claro);
+}
+
+/* Category specific styles already in cards.css */
+/* This file can include category-specific layouts or overrides */
+
+/* Category Section Title (if needed) */
+.categorias-section-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--texto);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--azul);
+}
+
+/* Loading State */
+.categorias-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  font-size: 24px;
+  color: var(--gris);
+  font-weight: 600;
+}
+
+/* Empty State */
+.categorias-empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--gris);
+}
+
+.categorias-empty-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  opacity: 0.3;
+}
+
+.categorias-empty-text {
+  font-size: 20px;
+  font-weight: 600;
+}

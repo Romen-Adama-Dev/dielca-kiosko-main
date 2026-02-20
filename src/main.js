@@ -9,6 +9,9 @@
 
 import { config } from './config.js';
 
+// ---- Templates ----
+import { TemplateManager } from './ui/templates/TemplateManager.js';
+
 // ---- Infrastructure ----
 import { StaticProductoRepository } from './infrastructure/repositories/StaticProductoRepository.js';
 import { ApiProductoRepository }    from './infrastructure/repositories/ApiProductoRepository.js';
@@ -31,6 +34,11 @@ import { CategoriasScreen }  from './ui/screens/CategoriasScreen.js';
 import { ProductosScreen }   from './ui/screens/ProductosScreen.js';
 import { ResumenScreen }     from './ui/screens/ResumenScreen.js';
 import { ConfirmacionScreen } from './ui/screens/ConfirmacionScreen.js';
+
+// ==============================================
+// Initialize HTML Templates (MUST be first!)
+// ==============================================
+TemplateManager.initialize();
 
 // ==============================================
 // Dependency Injection

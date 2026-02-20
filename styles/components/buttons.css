@@ -1,0 +1,229 @@
+/* =============================================
+   BUTTONS
+   ============================================= */
+
+/* Primary Button */
+.btn-primary {
+  width: 100%;
+  height: 68px;
+  background: linear-gradient(180deg, var(--azul) 0%, var(--azul-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 18px rgba(11,97,208,0.25);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(11,97,208,0.35);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:focus-visible {
+  outline: 3px solid rgba(11,97,208,0.4);
+  outline-offset: 3px;
+}
+
+/* Secondary Button */
+.btn-secondary {
+  width: 100%;
+  height: 64px;
+  background: white;
+  color: var(--azul);
+  border: 2px solid var(--azul);
+  border-radius: var(--radius);
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--azul);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(11,97,208,0.2);
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
+}
+
+/* Danger Button */
+.btn-danger {
+  background: linear-gradient(180deg, var(--rojo) 0%, var(--rojo-dark) 100%);
+  color: white;
+  box-shadow: 0 6px 18px rgba(214,69,69,0.25);
+}
+
+.btn-danger:hover {
+  box-shadow: 0 10px 28px rgba(214,69,69,0.35);
+}
+
+/* FAB Buttons */
+.fab-btn {
+  position: fixed;
+  z-index: 200;
+  width: 72px;
+  height: 72px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.fab-btn svg {
+  width: 38px;
+  height: 38px;
+  color: white;
+}
+
+.fab-btn:hover {
+  transform: translateY(-4px);
+}
+
+.fab-btn:active {
+  transform: scale(0.93);
+}
+
+.fab-btn:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.5);
+  outline-offset: 2px;
+}
+
+/* Search FAB */
+.search-fab {
+  bottom: 116px;
+  right: 28px;
+  background: linear-gradient(180deg, var(--azul) 0%, var(--azul-dark) 100%);
+  box-shadow: 0 8px 24px rgba(11,97,208,0.3);
+}
+
+.search-fab:hover {
+  box-shadow: 0 14px 36px rgba(11,97,208,0.4);
+}
+
+/* Cart FAB */
+.cart-fab {
+  bottom: 28px;
+  right: 28px;
+  background: linear-gradient(180deg, var(--rojo) 0%, var(--rojo-dark) 100%);
+  box-shadow: 0 8px 24px rgba(214,69,69,0.3);
+}
+
+.cart-fab:hover {
+  box-shadow: 0 14px 36px rgba(214,69,69,0.4);
+}
+
+.cart-fab.bounce {
+  animation: bounce 0.4s cubic-bezier(.36,.07,.19,.97);
+}
+
+/* Cart Badge */
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background: white;
+  color: var(--rojo);
+  font-size: 16px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Quantity Controls */
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--gris-claro);
+  padding: 8px;
+  border-radius: var(--radius);
+}
+
+.qty-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: white;
+  border: 2px solid #e8ecf4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--azul);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qty-btn:hover {
+  background: var(--azul);
+  color: white;
+  border-color: var(--azul);
+  transform: scale(1.08);
+}
+
+.qty-btn:active {
+  transform: scale(0.95);
+}
+
+.qty-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.qty-display {
+  min-width: 60px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--texto);
+}
+
+/* Icon Buttons */
+.icon-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-sm);
+  background: var(--gris-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: #e8ecf4;
+  transform: scale(1.05);
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+.icon-btn svg {
+  width: 24px;
+  height: 24px;
+  color: var(--texto);
+}

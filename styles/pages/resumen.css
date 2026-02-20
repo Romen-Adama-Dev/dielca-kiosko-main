@@ -1,0 +1,172 @@
+/* =============================================
+   RESUMEN (CHECKOUT) SCREEN
+   ============================================= */
+
+#screen-resumen {
+  background: var(--gris-claro);
+}
+
+/* Resumen specific styles */
+.resumen-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Resumen Section */
+.resumen-section {
+  background: white;
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px var(--sombra);
+}
+
+.resumen-section-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--texto);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e8ecf4;
+}
+
+/* Order Items List */
+.resumen-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.resumen-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: var(--gris-claro);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.resumen-item:hover {
+  background: #e8ecf4;
+  transform: translateX(4px);
+}
+
+.resumen-item-info {
+  flex: 1;
+}
+
+.resumen-item-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--texto);
+  margin-bottom: 4px;
+}
+
+.resumen-item-code {
+  font-size: 13px;
+  color: var(--gris);
+  font-weight: 500;
+}
+
+.resumen-item-quantity {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--azul);
+  margin: 0 20px;
+}
+
+.resumen-item-price {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--texto);
+  min-width: 120px;
+  text-align: right;
+}
+
+/* Totals */
+.resumen-totals {
+  border-top: 2px solid #e8ecf4;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.resumen-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.resumen-total-row.grand-total {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--azul);
+  padding-top: 16px;
+  border-top: 2px dashed #e8ecf4;
+  margin-top: 16px;
+}
+
+.resumen-total-label {
+  font-weight: 700;
+  color: var(--texto);
+}
+
+.resumen-total-value {
+  font-weight: 800;
+  color: var(--texto);
+}
+
+.grand-total .resumen-total-label,
+.grand-total .resumen-total-value {
+  color: var(--azul);
+}
+
+/* Notes */
+.resumen-note {
+  background: #fff9e6;
+  border-left: 4px solid #ffb800;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  margin-top: 20px;
+}
+
+.resumen-note-text {
+  font-size: 14px;
+  color: #856404;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Action Buttons */
+.resumen-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.resumen-actions .btn-primary,
+.resumen-actions .btn-secondary {
+  flex: 1;
+}
+
+/* Empty State */
+.resumen-empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--gris);
+}
+
+.resumen-empty-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  opacity: 0.3;
+}
+
+.resumen-empty-text {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 32px;
+}

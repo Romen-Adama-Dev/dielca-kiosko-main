@@ -1,0 +1,270 @@
+/* =============================================
+   MODALS
+   ============================================= */
+
+/* Modal Overlay Base */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,20,50,0.55);
+  backdrop-filter: blur(6px);
+  z-index: 900;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.show {
+  display: flex;
+  animation: fadeIn 0.25s ease;
+}
+
+/* Modal Container */
+.modal-container {
+  background: white;
+  border-radius: var(--radius);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: modal-enter 0.35s var(--easing-bounce);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Modal Header */
+.modal-header {
+  padding: 24px 32px;
+  border-bottom: 1px solid #e8ecf4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--gris-claro);
+}
+
+.modal-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--texto);
+}
+
+.modal-close {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: var(--rojo);
+  transform: scale(1.1);
+}
+
+.modal-close:hover svg {
+  color: white;
+}
+
+.modal-close:active {
+  transform: scale(0.95);
+}
+
+.modal-close svg {
+  width: 24px;
+  height: 24px;
+  color: var(--texto);
+  transition: color 0.2s ease;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 32px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: #c8d2e1;
+  border-radius: 4px;
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 24px 32px;
+  border-top: 1px solid #e8ecf4;
+  background: var(--gris-claro);
+}
+
+/* Detail Modal Specific */
+.detail-modal {
+  width: 800px;
+}
+
+.detail-image-wrapper {
+  background: #fafbfc;
+  padding: 40px;
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.detail-image {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+}
+
+.detail-info-group {
+  margin-bottom: 24px;
+}
+
+.detail-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gris);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.detail-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--texto);
+  line-height: 1.5;
+}
+
+.detail-price {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--azul);
+  margin: 24px 0;
+}
+
+.detail-specs {
+  background: var(--gris-claro);
+  padding: 20px;
+  border-radius: var(--radius-sm);
+  margin-top: 20px;
+}
+
+.detail-specs-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #e8ecf4;
+}
+
+.detail-specs-item:last-child {
+  border-bottom: none;
+}
+
+.spec-label {
+  font-weight: 600;
+  color: var(--gris);
+}
+
+.spec-value {
+  font-weight: 600;
+  color: var(--texto);
+}
+
+/* Quantity Modal */
+.qty-modal {
+  width: 500px;
+}
+
+.qty-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.qty-product-name {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--texto);
+}
+
+/* Search Modal */
+.search-modal {
+  width: 95vw;
+  height: 90vh;
+}
+
+.search-input-wrapper {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.search-input {
+  width: 100%;
+  height: 72px;
+  padding: 20px 24px 20px 68px;
+  border: 2px solid #e8ecf4;
+  border-radius: var(--radius);
+  font-size: 22px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 0 4px rgba(11,97,208,0.1);
+}
+
+.search-icon {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  color: var(--gris);
+  pointer-events: none;
+}
+
+.search-results {
+  overflow-y: auto;
+  max-height: calc(90vh - 200px);
+}
+
+.search-category-group {
+  margin-bottom: 32px;
+}
+
+.search-category-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--texto);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--azul);
+}
+
+.search-no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--gris);
+  font-size: 20px;
+  font-weight: 600;
+}

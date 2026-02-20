@@ -1,0 +1,89 @@
+/* =============================================
+   PRODUCTOS SCREEN
+   ============================================= */
+
+#screen-productos {
+  background: var(--gris-claro);
+}
+
+/* Products header */
+#screen-productos .header {
+  background: white;
+}
+
+/* Products grid specific styles already in grid.css */
+
+/* Product Filters (if needed future) */
+.productos-filters {
+  background: white;
+  padding: 20px 32px;
+  border-bottom: 1px solid #e8ecf4;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  padding: 10px 20px;
+  background: var(--gris-claro);
+  border: 2px solid transparent;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--texto);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-chip:hover {
+  background: var(--azul);
+  color: white;
+  border-color: var(--azul);
+}
+
+.filter-chip.active {
+  background: var(--azul);
+  color: white;
+  border-color: var(--azul-dark);
+}
+
+/* Loading State */
+.productos-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  font-size: 24px;
+  color: var(--gris);
+  font-weight: 600;
+}
+
+/* Empty State */
+.productos-empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--gris);
+}
+
+.productos-empty-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  opacity: 0.3;
+}
+
+.productos-empty-text {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Product Count Badge */
+.productos-count {
+  display: inline-block;
+  margin-left: 12px;
+  padding: 4px 12px;
+  background: var(--azul);
+  color: white;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+}

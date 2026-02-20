@@ -1,0 +1,27 @@
+/* =============================================
+   DIELCA KIOSCO - Modular Stylesheet
+   Arquitectura limpia y organizada por responsabilidad
+   ============================================= */
+
+/* BASE - Fundamentos */
+@import './base/variables.css';
+@import './base/reset.css';
+@import './base/animations.css';
+@import './base/utilities.css';
+
+/* LAYOUT - Estructura */
+@import './layout/app-shell.css';
+@import './layout/grid.css';
+
+/* COMPONENTS - Elementos reutilizables */
+@import './components/buttons.css';
+@import './components/cards.css';
+@import './components/modals.css';
+@import './components/cart.css';
+
+/* PAGES - Estilos específicos por pantalla */
+@import './pages/splash.css';
+@import './pages/categorias.css';
+@import './pages/productos.css';
+@import './pages/resumen.css';
+@import './pages/confirmacion.css';

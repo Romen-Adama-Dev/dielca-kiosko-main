@@ -1,0 +1,34 @@
+/* =============================================
+   VARIABLES - Design Tokens
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  /* Brand Colors */
+  --azul: #0b61d0;
+  --azul-dark: #07306a;
+  --azul-light: #5aa0ff;
+  --rojo: #d64545;
+  --rojo-dark: #a12b2b;
+  
+  /* Neutrals */
+  --blanco: #FFFFFF;
+  --gris-claro: #f7f9fc;
+  --gris: #9aa3b2;
+  --texto: #0f1724;
+  
+  /* Effects */
+  --sombra: rgba(3,10,18,0.06);
+  
+  /* Spacing & Sizing */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --cart-w: 400px;
+  --touch-min: 64px;
+  
+  /* Animations */
+  --transition: 0.18s cubic-bezier(.4,0,.2,1);
+  --transition-slow: 0.3s ease;
+  --easing-bounce: cubic-bezier(.34,1.56,.64,1);
+}
