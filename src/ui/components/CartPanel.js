@@ -75,7 +75,7 @@ export class CartPanel {
     if (!list) return;
 
     // Update total
-    const totalEl = document.querySelector('.cart-total-amount');
+    const totalEl = document.getElementById('cart-total');
     if (totalEl) totalEl.textContent = this._cart.getTotal().toFixed(2) + ' €';
 
     list.innerHTML = '';

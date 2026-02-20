@@ -25,8 +25,8 @@ export class DetailModal {
     document.getElementById('detail-add-btn')
       ?.addEventListener('click', () => {
         if (this._producto?.stock) {
-          this.close();
           this._onAdd?.(this._producto);
+          this.close();
         }
       });
   }
