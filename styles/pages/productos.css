@@ -1,89 +1,118 @@
-/* =============================================
-   PRODUCTOS SCREEN
-   ============================================= */
-
+/* ==========================================
+   SCREEN: PRODUCTOS
+   ========================================== */
 #screen-productos {
   background: var(--gris-claro);
 }
 
-/* Products header */
-#screen-productos .header {
-  background: white;
+.productos-body {
+  flex: 1;
+  padding: 24px 28px;
+  overflow-y: auto;
 }
 
-/* Products grid specific styles already in grid.css */
-
-/* Product Filters (if needed future) */
-.productos-filters {
-  background: white;
-  padding: 20px 32px;
-  border-bottom: 1px solid #e8ecf4;
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+#productos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
-.filter-chip {
-  padding: 10px 20px;
-  background: var(--gris-claro);
+.prod-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  display: flex; flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.25s ease;
+  cursor: default;
   border: 2px solid transparent;
-  border-radius: 20px;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--texto);
-  cursor: pointer;
-  transition: all 0.2s ease;
+  position: relative;
 }
-
-.filter-chip:hover {
-  background: var(--azul);
-  color: white;
+.prod-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
   border-color: var(--azul);
 }
-
-.filter-chip.active {
-  background: var(--azul);
-  color: white;
-  border-color: var(--azul-dark);
+.prod-card.sin-stock {
+  opacity: 0.6;
+}
+.prod-card:focus-within {
+  outline: 2px solid var(--azul);
+  outline-offset: 2px;
 }
 
-/* Loading State */
-.productos-loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 400px;
-  font-size: 24px;
-  color: var(--gris);
-  font-weight: 600;
+.prod-icon {
+  width: 72px; height: 72px;
+  background: var(--gris-claro);
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  padding: 8px;
 }
+.prod-icon svg { width: 100%; height: 100%; }
 
-/* Empty State */
-.productos-empty {
-  text-align: center;
-  padding: 80px 20px;
-  color: var(--gris);
-}
-
-.productos-empty-icon {
-  font-size: 80px;
-  margin-bottom: 20px;
-  opacity: 0.3;
-}
-
-.productos-empty-text {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-/* Product Count Badge */
-.productos-count {
-  display: inline-block;
-  margin-left: 12px;
-  padding: 4px 12px;
-  background: var(--azul);
-  color: white;
-  border-radius: 12px;
+.prod-nombre {
   font-size: 16px;
   font-weight: 700;
+  color: var(--texto);
+  line-height: 1.3;
+  flex: 1;
 }
+
+.prod-ref {
+  font-size: 12px;
+  color: var(--gris);
+  font-weight: 500;
+}
+
+.prod-precio {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--azul);
+}
+.prod-precio span {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gris);
+}
+
+.prod-add-btn {
+  background: linear-gradient(180deg, var(--azul) 0%, var(--azul-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: var(--touch-min);
+  transition: all 0.2s ease;
+  margin-top: auto;
+  position: relative;
+  overflow: hidden;
+}
+.prod-add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(11,97,208,0.3);
+}
+.prod-add-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 4px 8px rgba(11,97,208,0.2);
+}
+.prod-add-btn:focus-visible {
+  outline: 2px solid rgba(11,97,208,0.5);
+  outline-offset: 2px;
+}
+
+.prod-nostock {
+  text-align: center;
+  padding: 14px;
+  background: var(--gris-claro);
+  border-radius: var(--radius-sm);
+  color: var(--gris);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: auto;
+}
+

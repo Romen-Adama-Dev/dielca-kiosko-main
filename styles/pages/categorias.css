@@ -1,65 +1,81 @@
-/* =============================================
-   CATEGORIAS SCREEN
-   ============================================= */
-
+/* ==========================================
+   SCREEN: CATEGORÍAS
+   ========================================== */
 #screen-categorias {
   background: var(--gris-claro);
 }
 
-/* Header customization for categorias */
-#screen-categorias .header {
-  background: linear-gradient(135deg, var(--azul-dark) 0%, var(--azul) 100%);
-  color: white;
-  box-shadow: 0 4px 16px rgba(11,97,208,0.25);
+.categorias-body {
+  flex: 1;
+  padding: 28px;
+  overflow-y: auto;
 }
 
-#screen-categorias .header-title {
-  color: white;
+#categorias-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
 }
 
-/* Content area */
-#screen-categorias .content {
-  background: var(--gris-claro);
+.cat-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 22px 18px 20px;
+  cursor: pointer;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 2px solid transparent;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+  justify-content: center;
+}
+.cat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+  border-color: var(--cat-color);
+}
+.cat-card:active {
+  transform: scale(0.96);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+.cat-card:focus-visible {
+  outline: 2px solid var(--cat-color);
+  outline-offset: 2px;
 }
 
-/* Category specific styles already in cards.css */
-/* This file can include category-specific layouts or overrides */
+.cat-icon {
+  width: 90px; height: 90px;
+  animation: none;
+  position: relative; z-index: 1;
+}
+.cat-icon svg { width: 100%; height: 100%; }
 
-/* Category Section Title (if needed) */
-.categorias-section-title {
-  font-size: 28px;
+.cat-name {
+  font-size: 18px;
   font-weight: 800;
   color: var(--texto);
-  margin-bottom: 24px;
-  padding-bottom: 12px;
-  border-bottom: 3px solid var(--azul);
-}
-
-/* Loading State */
-.categorias-loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 400px;
-  font-size: 24px;
-  color: var(--gris);
-  font-weight: 600;
-}
-
-/* Empty State */
-.categorias-empty {
   text-align: center;
-  padding: 80px 20px;
+  line-height: 1.2;
+  position: relative; z-index: 1;
+}
+
+.cat-desc {
+  font-size: 13px;
   color: var(--gris);
+  text-align: center;
+  line-height: 1.4;
+  position: relative; z-index: 1;
 }
 
-.categorias-empty-icon {
-  font-size: 80px;
-  margin-bottom: 20px;
-  opacity: 0.3;
+/* Bottom accent */
+.cat-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--cat-color);
+  border-radius: 0 0 20px 20px;
 }
 
-.categorias-empty-text {
-  font-size: 20px;
-  font-weight: 600;
-}

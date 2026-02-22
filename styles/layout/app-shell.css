@@ -1,112 +1,68 @@
-/* =============================================
-   APP SHELL & LAYOUT
-   ============================================= */
-
-#app {
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Screen Base */
-.screen {
-  position: absolute;
-  inset: 0;
-  display: none;
-  flex-direction: column;
-  opacity: 0;
-  transform: scale(0.97);
-  transition: opacity var(--transition-slow), transform var(--transition-slow);
-}
-
-.screen.active {
-  display: flex;
-  opacity: 1;
-  transform: scale(1);
-  animation: screen-enter 0.4s var(--easing-bounce);
-}
-
-/* Header Layout */
-.header {
-  background: white;
-  border-bottom: 1px solid #e8ecf4;
-  padding: 20px 32px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  min-height: 92px;
+/* ==========================================
+   HEADER (shared)
+   ========================================== */
+.kiosk-header {
+  background: linear-gradient(90deg, var(--azul-dark), var(--azul));
+  padding: 12px 20px;
+  display: flex; align-items: center; gap: 16px;
+  min-height: 72px;
+  box-shadow: 0 6px 18px var(--sombra);
   flex-shrink: 0;
-  box-shadow: 0 2px 8px var(--sombra);
+  position: relative; z-index: 10;
+}
+
+.header-back-btn {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 18px;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 10px;
+  min-height: var(--touch-min);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+.header-back-btn:hover {
+  background: rgba(255,255,255,0.15);
+}
+.header-back-btn:active {
+  background: rgba(255,255,255,0.25);
+  transform: scale(0.97);
+}
+.header-back-btn:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.6);
+  outline-offset: 2px;
 }
 
 .header-logo-mini {
   height: 120px;
   width: auto;
   object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+  background: white;
+  border-radius: 12px;
+  padding: 6px 12px;
+}
+.header-logo-mini.text {
+  background: white;
+  border-radius: 14px;
+  padding: 8px 18px;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--azul);
+  letter-spacing: -1px;
 }
 
 .header-title {
-  font-size: 34px;
+  flex: 1;
+  font-size: 26px;
   font-weight: 800;
-  color: var(--texto);
+  color: white;
   letter-spacing: -0.5px;
 }
 
-/* Back Button */
-.back-btn {
-  width: 64px;
-  height: 64px;
-  border-radius: var(--radius);
-  background: var(--gris-claro);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-}
-
-.back-btn:hover {
-  background: #e8ecf4;
-  transform: translateX(-4px);
-}
-
-.back-btn:active {
-  transform: scale(0.95);
-}
-
-.back-btn:focus-visible {
-  outline: 2px solid var(--azul);
-  outline-offset: 2px;
-}
-
-.back-btn svg {
-  width: 32px;
-  height: 32px;
-  color: var(--texto);
-}
-
-/* Content Area */
-.content {
-  flex: 1;
-  overflow-y: auto;
-  padding: 32px;
-  -webkit-overflow-scrolling: touch;
-}
-
-.content::-webkit-scrollbar {
-  width: 10px;
-}
-
-.content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.content::-webkit-scrollbar-thumb {
-  background: #c8d2e1;
-  border-radius: 5px;
-}
-
-.content::-webkit-scrollbar-thumb:hover {
-  background: #9aa3b2;
-}
