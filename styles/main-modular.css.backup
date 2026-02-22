@@ -1,31 +1,4 @@
 /* =============================================
-   DIELCA KIOSCO - Modular Stylesheet
-   Clean Architecture - Archivos modulares + Fallback
-   ============================================= */
-
-/* Import modular components */
-@import './base/variables.css';
-@import './base/reset.css';
-@import './base/animations.css';
-@import './base/utilities.css';
-@import './layout/app-shell.css';
-@import './layout/grid.css';
-@import './components/buttons.css';
-@import './components/cards.css';
-@import './components/modals.css';
-@import './components/cart.css';
-@import './pages/splash.css';
-@import './pages/categorias.css';
-@import './pages/productos.css';
-@import './pages/resumen.css';
-@import './pages/confirmacion.css';
-
-/* =============================================
-   FALLBACK STYLES (Complete main.css merged)
-   Estilos completados para garantizar funcionalidad
-   ============================================= */
-
-/* =============================================
    DIELCA KIOSCO - Main Stylesheet
    Optimizado para pantalla táctil 32"+
    ============================================= */
